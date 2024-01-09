@@ -12,10 +12,14 @@ exporters:
     resource_to_telemetry_conversion:
       enabled: true
     enable_open_metrics: true
+  azuremonitor:
+    instrumentation_key: 00000000-0000-0000-0000-000000000000
 
 service:
   pipelines:
     traces:
-      exporters: [otlp, logging, spanmetrics]
+      exporters: [otlp, logging, spanmetrics, azuremonitor]
     metrics:
-      exporters: [prometheus, logging]
+      exporters: [prometheus, logging, azuremonitor]
+    logs:
+      exporters: [azuremonitor]      
